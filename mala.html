@@ -1,0 +1,756 @@
+
+ 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">    
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="owl.carousel.min.css">
+
+
+ 
+        <link rel="stylesheet" href="newDash.css" />
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="vedic.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="newDash.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+    />
+  <title>3D Mala with Progress Bar</title>
+  <style>
+    
+ 
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background-color: white;
+}
+#mala-container {
+  position: absolute;
+  top: -47px;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  background-color: white;
+}
+
+#heading-container {
+  position: absolute;
+  top: 20vw; /* Adjust top position based on viewport width */
+  left: 0vw; /* Adjust left position based on viewport width */
+  width:100%;
+  background-color: transparent;
+  
+}
+#headng-container {
+  position: absolute;
+  top: 0vw; /* Adjust top position based on viewport width */
+  left: 0vw; /* Adjust left position based on viewport width */
+  width:100%;
+  background-color: transparent;
+  
+  z-index: 100;
+}
+h1 {
+  text-align: center;
+  color: #00000078;
+  margin-top: -10px;
+  overflow: hidden; /* Ensure the text overflow is hidden */
+  white-space: nowrap; /* Prevent the text from wrapping */
+}
+
+/* Keyframes for the typing animation */
+@keyframes reveal {
+  0% {
+    width: 0; /* Start with no width */
+  }
+  100% {
+    width: 100%; /* End with full width */
+  }
+}
+
+/* Apply the typing animation to the heading */
+h1::before {
+  content: attr(data-heading); /* Use the content attribute for the heading text */
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: reveal 2s steps(40, end) forwards; /* Adjust duration and steps as needed */
+}
+.dark-mode h1{
+  color: white ;
+}
+h3 {
+  color: #FF901C;
+  font-size: 6vw; /* 5% of the viewport width */
+ background-color: transparent;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  animation: fadeInOut 1s ease-in-out forwards;
+}
+.dark-mode [role="progressbar"] {
+  --secondary: #ffffff; /* Set secondary color to white for dark mode */
+}
+
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transition: opacity 0.5s ease-in-out;s
+}
+
+.preloader.hidden {
+    opacity: 0;
+    pointer-events: none; /* Disable pointer events to prevent interaction with hidden preloader */
+}
+
+.preloader-text {
+    color: darkorange;
+    font-family: 'Roboto', sans-serif;
+    font-size: 5vh;
+}
+ .navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 0; /* Add some padding to make it look more spaced */
+    z-index: 10; 
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Add a box shadow for the raised effect */
+     
+}
+
+.nav-icon {
+    color: #47423D;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+        .dark-mode .navbar{
+           background-color: #000000;
+        }
+        .dark-mode .nav-icon{
+          
+          color: #ffffff;
+          
+        }
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes countAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes progress {
+  0% {
+    --percentage: 0;
+  }
+  100% {
+    --percentage: var(--value);
+  }
+}
+
+@property --percentage {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+.toggle-btn {
+position: absolute;
+  top: 17%;
+right: 2%;
+z-index: 2;
+
+}
+
+.switch {
+  visibility: hidden;
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 25px;
+  border-radius: 40px;
+  border: 2px solid darkorange;
+  background-color: #fff;
+  cursor: pointer;
+  text-align: left;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.label .fas {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #f1c40f;
+  transition: transform 0.3s ease;
+}
+
+.label .fas.fa-sun {
+  left: 5px;
+  color:red;
+}
+
+.label .fas.fa-moon {
+  right: 5px;
+}
+
+.ball {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translate(-3px, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #FC860B;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.switch:checked ~ .label {
+  background-color: #000000;
+  
+}
+
+
+.switch:checked ~ .label .fas.fa-sun {
+  transform: translateY(0%) translateX(10%);
+  opacity: 0;
+}
+
+.switch:checked ~ .label .fas.fa-moon {
+  transform: translateY(-5%) translateX(-10%);
+}
+
+.switch:checked ~ .label .ball {
+  transform: translate(calc(50px - 29px), -50%);
+}
+
+
+[role="progressbar"] {
+  --percentage: var(--value);
+  --primary: #FF901C;
+  --secondary: #00000078;
+  --size: 29vmin; /* 20% of the smaller viewport dimension */
+  animation: progress 2s 0.5s forwards;
+  width: var(--size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: absolute;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  top: 140%; /* Adjust top position based on viewport width */
+  left: 80%; /* Adjust left position based on viewport width */
+  margin-top: 0vw; /* Adjust margin based on viewport width */
+  color: #FF901C;
+  font-size: 10vw; /* 4% of the smaller viewport dimension */
+  transform: translate(-50%, -50%);
+}
+
+[role="progressbar"]::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(var(--primary) calc(var(--percentage) * 1%), var(--secondary) 0);
+  mask: radial-gradient(white 55%, transparent 0);
+  mask-mode: alpha;
+  -webkit-mask: radial-gradient(#0000 55%, #000 0);
+  -webkit-mask-mode: alpha;
+}
+
+[role="progressbar"]::after {
+  counter-reset: percentage var(--value);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc(var(--size) / 5);
+  color: var(--primary);
+}
+
+#startButton {
+  font-size: 6vw; /* 4% of the viewport width */
+  color: #fff;
+  margin-top: 8vw; /* Adjust margin based on viewport width */
+  margin-left: 4vw; /* Adjust margin based on viewport width */
+  background-color: #FF901C;
+  border: none;
+  padding: 3vw 6vw; /* Adjust padding based on viewport width */
+  border-radius: 89px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+position: absolute;
+  
+}
+
+#startButton:hover {
+  background-color: #E17D15;
+}
+
+#counter {
+  font-size: 18vw; /* 10% of the viewport width */
+  color: #FF901C;
+  text-align: left;
+  margin-left: 8vw; /* Adjust margin based on viewport width */
+  margin-top: 5vw; /* Adjust margin based on viewport width */
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  display: none; /* Initially hidden */
+  position: fixed;
+}
+
+    #muteButton {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      margin-top: 17%;
+      margin-left: 11%;
+      position: absolute;
+    }
+      
+      
+
+    #muteIcon {
+      font-size: 6vw;
+      color: #00000078; /* Adjust the color as needed */
+    }
+
+    #muteIcon.fa-volume-up:before {
+      content: "\f028"; /* Volume up icon */
+    }
+
+    #muteIcon.fa-volume-off:before {
+      content: "\f026"; /* Volume off icon */
+    }
+ 
+
+/* Fullscreen button */
+#fullscreenButton {
+  position: fixed;
+  bottom: 18vw; /* Adjust bottom position based on viewport width */
+  right: 2vw; /* Adjust right position based on viewport width */
+  background-color: #FF901C;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 2vw; /* Adjust padding based on viewport width */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 6vw; /* 4% of the viewport width */
+}
+
+
+#fullscreenButton:hover {
+  background-color: #E17D15;
+}
+
+/* Adjust styles for smaller screens */
+@media (max-width: 600px) {
+  h3 {
+    font-size: 6vw; /* Increase font size for smaller screens */
+  }
+
+  [role="progressbar"] {
+    --size: 29vmin; /* Increase progress bar size for smaller screens */
+    font-size: 9vmin; /* Increase font size for smaller screens */
+  }
+
+  /* ... */
+}
+
+/* Adjust styles for landscape orientation */
+
+  </style>
+</head>
+<body>
+
+
+         <div class="preloader" id="preloader">
+        <div class="preloader-text" id="typewriter"></div>
+    </div>
+
+         <div class="navbar">
+           <a href="index.html" class="nav-icon">
+             <i class="fas fa-home"></i>
+             <!-- Home icon -->
+           </a>
+           <a href="nav.html" class="nav-icon">
+             <i class="fas fa-om" style="color: darkorange;"></i> <!-- Meditation icon -->
+           </a>
+           <a href="https://game.sakha.chat" class="nav-icon">
+             <i class="fas fa-gamepad"></i> <!-- Game icon -->
+           </a>
+           <a href="https://vedic.sakha.chat" class="nav-icon">
+             <i class="fas fa-book"></i> <!-- Books icon -->
+           </a>
+           <a href="https://signin.sakha.chat" class="nav-icon">
+             <i class="fas fa-comments"></i> <!-- Chat icon -->
+           </a>
+         </div>
+
+
+<div id="mala-container"></div>
+  <div id="headng-container">
+    
+          <div class="toggle-btn">
+                <input type="checkbox" id="switch" name="theme" class="switch" />
+                <label for="switch" class="label">
+                    <div class="ball"></div>
+                </label>
+            </div>
+ 
+      <h1 data-heading="Chanting"></h1>
+
+  </div>
+  <div id="heading-container">
+
+
+    <h3 id="heading">जय श्रीकृष्णचैतन्य प्रभु नित्यानंद । <br>श्री अद्वैत गदाधर श्रीवासादि गौर भक्तवृंद ॥</h3>
+   
+    <button id="startButton">Start</button>
+
+    <h2 id="counter">0</h2>
+    <div role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="--value: 99; display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 5vw;" id="rounds">0</span>
+      <span style="font-size: 5vw;">/16</span>
+    </div>
+        <br>
+
+    <audio id="chanting-audio">
+      <source src="a.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+        <br>
+    <button id="muteButton" onclick="toggleMute()">
+      <i id="muteIcon" class="fas fa-volume-up"></i>
+    </button>
+    
+  </div>
+
+  <!-- Fullscreen button -->
+  <button id="fullscreenButton" onclick="toggleFullscreen()">
+    <i class="fas fa-expand"></i>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script>
+    // Create a scene
+    // Create a scene
+// Create a scene
+// Create a scene
+const texts = ['Sakha'];
+        let count = 0;
+        let index = 0;
+        let currentText = '';
+        let letter = '';
+
+        (function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+            document.getElementById('typewriter').textContent = letter;
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+            }
+            setTimeout(type, 250);
+		setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        preloader.classList.add('hidden');
+    }, 1000);
+        })();
+const scene = new THREE.Scene();
+
+
+// Create a camera
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.x = -10; // Adjust the camera position
+camera.position.z = 2.5;
+
+// Create a renderer
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0xfffffff); // Set the background color to black
+document.getElementById('mala-container').appendChild(renderer.domElement);
+
+// Create materials
+const beadMaterial = new THREE.MeshStandardMaterial({
+  map: new THREE.TextureLoader().load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKU_hEBJ8JmVZcDpWs0wMcKxK59CuR6H1rKqLjco2ZOw&s'), // Wooden texture
+});
+
+// Load the image texture
+const imageTexture = new THREE.TextureLoader().load('path/to/your/image.png');
+const imageMaterial = new THREE.MeshBasicMaterial({ map: imageTexture, transparent: true });
+const imageGeometry = new THREE.PlaneGeometry(1, 1); // Adjust the size as needed
+const imageMesh = new THREE.Mesh(imageGeometry, imageMaterial);
+
+// Create beads
+const numBeads = 18;
+const beads = [];
+const radius = 0.5; // Adjust the bead radius
+const spacing = 0.2; // Adjust the spacing between beads
+const circleRadius = 3; // Adjust the circle radius
+const bottomOffset = -3; // Adjust the offset for the bottom position
+
+for (let i = 0; i < numBeads; i++) {
+  const bead = new THREE.Mesh(new THREE.SphereGeometry(radius, 32, 32), beadMaterial);
+  const angle = (i / numBeads) * Math.PI * 2; // Adjust the angle for a circular pattern
+  bead.position.x = Math.cos(angle) * circleRadius;
+  bead.position.y = Math.sin(angle) * circleRadius + bottomOffset;
+  bead.position.z = 0;
+  scene.add(bead);
+  beads.push(bead);
+
+  // If it's the first bead, add the image mesh as a child
+  if (i === 0) {
+    imageMesh.position.set(0, radius + 0.01, 0); // Adjust the position as needed
+    imageMesh.scale.set(0.5, 0.5, 0.5); // Adjust the scale as needed
+    bead.add(imageMesh);
+  }
+}
+
+// Create lights
+const ambientLight = new THREE.AmbientLight(0x404040);
+scene.add(ambientLight);
+
+const pointLight1 = new THREE.PointLight(0x000000);
+pointLight1.position.set(5, 5, 5);
+scene.add(pointLight1);
+
+const pointLight2 = new THREE.PointLight(0xDEE9FA);
+pointLight2.position.set(-5, 5, -5);
+scene.add(pointLight2);
+
+const pointLight3 = new THREE.PointLight(0x000000);
+pointLight3.position.set(5, -5, -5);
+scene.add(pointLight3);
+
+const pointLight4 = new THREE.PointLight(0xDEE9FA);
+pointLight4.position.set(-5, -5, 5);
+scene.add(pointLight4);
+
+// Create orbit controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enabled = false;
+
+// Rotation variables
+let rotation = 0;
+const rotationSpeed = 0.011;
+let isSpinning = false;
+let spinTimeout;
+
+// Counter variable
+let counter = 0;
+let rounds = 0;
+
+// Event listeners
+renderer.domElement.addEventListener('click', startSpinning);
+document.addEventListener('DOMContentLoaded', function() {
+  const switchBtn = document.getElementById('switch');
+  const body = document.body;
+
+  switchBtn.addEventListener('change', function() {
+    if (this.checked) {
+      body.classList.add('dark-mode');
+      renderer.setClearColor(0x000000); // Set clear color to black for dark mode
+    } else {
+      body.classList.remove('dark-mode');
+      renderer.setClearColor(0xffffff); // Set clear color to white when dark mode is off
+    }
+  });
+
+  // Set the initial clear color based on the initial state of the switch
+  if (switchBtn.checked) {
+    body.classList.add('dark-mode');
+    renderer.setClearColor(0x000000); // Set clear color to black for dark mode
+  } else {
+    renderer.setClearColor(0xffffff); // Set clear color to white when dark mode is off
+  }
+});
+
+
+// Render loop
+function animate() {
+  requestAnimationFrame(animate);
+
+  if (isSpinning) {
+    // Rotate the beads
+    rotation += rotationSpeed;
+    beads.forEach((bead, index) => {
+      bead.position.x = Math.cos(index * ((Math.PI * 2) / numBeads) + rotation) * circleRadius;
+      bead.position.y = Math.sin(index * ((Math.PI * 2) / numBeads) + rotation) * circleRadius + bottomOffset;
+    });
+
+    // Adjust the image mesh's rotation relative to the first bead
+    imageMesh.rotation.y += rotationSpeed;
+
+    // Update counter
+    document.getElementById('counter').innerText = counter;
+
+    // Update rounds and progress bar
+    if (counter >= 108) {
+      rounds++;
+      counter = 0;
+      updateProgressBar(rounds / 16 * 100);
+      document.getElementById('rounds').innerText = rounds;
+    }
+
+    if (counter === 0) {
+      document.getElementById('startButton').innerText = "Restart ";
+      document.getElementById('startButton').style.display = 'none'; // Hide the start button
+      document.getElementById('counter').style.display = 'none'; // Show the counter
+      document.getElementById('heading').innerHTML= "जय श्रीकृष्णचैतन्य प्रभु नित्यानंद । <br> श्री अद्वैत गदाधर श्रीवासादि गौर भक्तवृंद ॥";
+    } else {
+      document.getElementById('heading').innerHTML = "हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे <br> हरे राम हरे राम राम राम हरे हरे॥";
+
+    }
+  }
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+const chantingAudio = document.getElementById('chanting-audio');
+let isMuted = false;
+
+function toggleMute() {
+  isMuted = !isMuted;
+  chantingAudio.muted = isMuted;
+  const muteIcon = document.getElementById('muteIcon');
+  muteIcon.classList.toggle('fa-volume-up', !isMuted);
+  muteIcon.classList.toggle('fa-volume-off', isMuted);
+}
+
+function startSpinning() {
+  // Reset audio to start
+  const startButton = document.getElementById('startButton');
+  const isVisible = window.getComputedStyle(startButton).display !== 'none';
+
+  // If the start button is visible, set isSpinning to false, else true
+  if (isVisible) {
+    isSpinning = false; // Stop spinning
+  } else {
+    const audioSource = document.getElementById('chanting-audio').querySelector('source');
+    audioSource.src = 'a.mp3';
+    document.getElementById('chanting-audio').load();
+    isSpinning = true; // Start spinning
+    chantingAudio.currentTime = 0;
+    chantingAudio.play();
+    spinTimeout = setTimeout(stopSpinning, 518); // Stop spinning after 1 second (1000 milliseconds)
+    counter++;
+    updateProgressBar(rounds / 16 * 100);
+    document.getElementById('startButton').style.display = 'none'; // Hide the start button
+    document.getElementById('counter').style.display = 'inline-block'; // Show the counter
+  }
+}
+// Function to toggle ful;lscreen mode
+function toggleFullscreen() {
+  const elem = document.documentElement;
+  const malaContainer = document.getElementById('mala-container');
+  const headingcontainer = document.getElementById('heading-container');
+  if (!document.fullscreenElement) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem.msRequestFullscreen();
+    }
+    document.getElementsByClassName('navbar')[0].style.display = 'none'; 
+    headingcontainer.style.top = '10%'; 
+    malaContainer.style.top = '12%'; // Adjust the position for fullscreen mode
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+    headingcontainer.style.top = '10%'; 
+    malaContainer.style.top = '-7%';
+    document.getElementsByClassName('navbar')[0].style.display = 'flex'; // Show the navbar again
+  }
+}
+function updateProgressBar(value) {
+  const progressBar = document.querySelector('[role="progressbar"]');
+  progressBar.style.setProperty('--value', value);
+}
+
+function stopSpinning() {
+  isSpinning = false;
+  clearTimeout(spinTimeout); //Clear the spinning timeout
+}
+
+
+document.getElementById('startButton').addEventListener('click', toggleSpinning);
+
+function toggleSpinning() {
+  const audioSource = document.getElementById('chanting-audio').querySelector('source');
+  const startButton = document.getElementById('startButton');
+  audioSource.src = 'c.mp3';
+  document.getElementById('chanting-audio').load();
+  chantingAudio.currentTime = 0;
+  chantingAudio.play();
+  startButton.style.display = 'none';
+}
+
+animate();
+  </script>
+</body>
+</html>
+
