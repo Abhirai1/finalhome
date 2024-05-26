@@ -603,22 +603,23 @@ document.addEventListener('DOMContentLoaded', function() {
   const switchBtn = document.getElementById('switch');
   const body = document.body;
 
+
   switchBtn.addEventListener('change', function() {
     if (this.checked) {
       body.classList.add('dark-mode');
       renderer.setClearColor(0x000000); // Set clear color to black for dark mode
     } else {
       body.classList.remove('dark-mode');
-      renderer.setClearColor(0xffffff); // Set clear color to white when dark mode is off
+      renderer.setClearColor(0xFDF0E9); // Set clear color to white when dark mode is off
     }
   });
 
   // Set the initial clear color based on the initial state of the switch
   if (switchBtn.checked) {
     body.classList.add('dark-mode');
-    renderer.setClearColor(0x000000); // Set clear color to black for dark mode
+    renderer.setClearColor(0x723729); // Set clear color to black for dark mode
   } else {
-    renderer.setClearColor(0xffffff); // Set clear color to white when dark mode is off
+    renderer.setClearColor(0xFDF0E9); // Set clear color to white when dark mode is off
   }
 });
 
