@@ -1,875 +1,411 @@
- 
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakha</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">    
+  <title>Sakha - Your Spiritual Friend</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg-color: #f0f0f0;
+      --primary-color: #FF8C00;
+      --text-color: #333;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --card-bg: rgba(255, 255, 255, 0.8);
+    }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="owl.carousel.min.css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
 
- 
-        <link rel="stylesheet" href="newDash.css" />
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">    
-    <link rel="stylesheet" href="vedic.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="owl.carousel.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="sidebar.css">
-    <link rel="stylesheet" href="menu.css">
-    <link rel="stylesheet" href="newDash.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
-    />
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: white;
-            color:darkorange;
-            
-        }
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      transition: all 0.3s ease;
+    }
 
-        header {
-  font-weight: bold;
-  padding: 3px 0;
-  font-size: 34px;
-   
-  text-align: center;
-}
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      animation: pulse 1s;
+    }
 
-        h2 {
-            position: sticky;
-            color: darkorange;
-            padding-left: 10px;
-        }
+    @keyframes pulse {
+      0% {
+        transform: scale(2);
+        opacity: 0;
+      }
 
-/* For light mode */
-#container {
-  display: flex;
-  justify-content: center;
-  background: linear-gradient(150deg, darkorange, #ffffff, #ffffff,#ffffff, #ffffff);
-}
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
 
-/* For dark mode */
-.dark-mode .container {
-  background: #000000;
-}
-.container {
+    .logo img {
+      width: 200px;
+      filter: drop-shadow(3px 3px 5px var(--shadow-color)) drop-shadow(-3px -3px 5px rgba(255, 255, 255, 0.11));
+      border-radius: 20px;
+    }
 
-  background: #ffffff;
-}
+    .welcome-message {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      position: relative;
+      height: 2.5em;
+      min-height: 2.5em;
+      
+      filter: drop-shadow(3px 3px 5px var(--shadow-color)) drop-shadow(-3px -3px 5px rgba(255, 255, 255, 1));
+    }
 
-/* For dark mode */
-.dark-mode #container {
-  background: linear-gradient(150deg, darkorange, #000000,  #000000, #000000);
-}
-        #image-container {
-          
-            position: relative;
-            flex: 1;
-            border-radius: 500%;
-            text-align: center;
-        }
+    .auth-container {
+      background: var(--card-bg);
+      backdrop-filter: blur(0px);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 8px 8px 15px var(--shadow-color), -8px -8px 15px rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+      width: 95%;
 
-        #text-overlay {
-            position: absolute;
-            top: 11%;
-            left: 0%;
-            transform: translate(5%, 5%);
-            font-family: 'Pacifico', cursive;
-            font-size: 15vh;
-            color: black;
-            text-shadow: 2px 2px 4px dr;
-        }
+      max-width: 400px;
+      
+    }
 
-        #textpr {
-            position: absolute;
-            top: 39%;
-            left: 15px;
-            text-align: left;
-            transform: translate(5%, 5%);
-            font-family: 'Pacifico', ;
-            font-size: 2.5vh;
-            color: black;
-            text-shadow: 2px 2px 4px dr;
-        }
+    .auth-input {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: inset 3px 3px 5px var(--shadow-color), inset -3px -3px 5px rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
 
-        #txt {
-            color: black;
-        }
-/* Dark mode styles */
-.dark-mode {
-    background-color: #000000;
-    
-}
+    .auth-input:focus {
+      outline: none;
+      box-shadow: inset 5px 5px 8px var(--shadow-color), inset -5px -5px 8px rgba(255, 255, 255, 0.7);
+    }
 
-/* Light mode specific styles */
+    .auth-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 10px 0;
+      width: 100%;
+      box-shadow: 3px 3px 5px var(--shadow-color), -3px -3px 5px rgba(255, 255, 255, 0.7);
+    }
 
-h2 {
-    color: darkorange;
-}
+    .auth-button:hover {
+      background-color: #e67300;
+      transform: translateY(-3px);
+    }
 
-.Sk-box {
-    background-color: white;
-    color: #ffffff;
-}
+    .forgot-password {
+      margin-top: 10px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
 
-/* Update other element styles for light mode */
-/* For example: */
- 
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
 
-        .Sk-box {
-            background-color: white;
-            color: #ffffff;
-            padding: 20px;
-            justify-content: center;
-            border-radius: 30px;
-            text-align: center;
-            max-width: 98%;
- 
-            margin-bottom: 3% ;
-            outline: 2px solid darkorange; /* Add outline */
-            outline-offset: -8px; /* Adjust the outline offset */
-        }
+    .signup-link {
+      margin-top: 20px;
+      font-size: 1rem;
+    }
 
-        .Sk-header {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+    .signup-link a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
 
-        .Sk-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
 
-        .Sk-description {
-            font-size: 16px;
-            margin-bottom: 20px;
-            background-color: white;
-        }
-.dark-mode .Sk-description  {
-  background-color: black;
-}
-.dark-mode .Sk-box{
-  background-color: black;
-}
-        .try-button {
-            background: linear-gradient(to right, #FF932F, #DD2476); /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #f7b733, #fc4a1a); 
-            
-            color: #ffffff;
-             border: none;
-           
-             
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 20px;
-            max-width: 80%;
-            padding: 12px 16px;
-             
-            animation: pop 1s ease-in-out;
-        }
-
-        .chat-container {
-            max-height: 350px;
-            overflow-y: auto; /* Add scrollbar */
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-        }
-.dark-mode .chat-container{
-  background-color: black;
-}
-        .message {
-            border-radius: 20px;
-            max-width: 80%;
-            padding: 12px 16px;
-            margin-bottom: 10px;
-            animation: pop 1s ease-in-out;
-        }
-
-        .message.received {
-            align-self: flex-start;
-            background: #FC4A1A; /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a); /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            color: black;
-            text-align: left;
-        }
-
-        .message.sent {
-          text-align: left;
-            align-self: flex-end;
-            background: #2193b0; /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0); /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            color: white;
-        }
-
-        .Sk-description input[type="text"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-top: 10px;
-            border: 2px solid #000000;
-            border-radius: 4px;
-            outline: none;
-            
-        }
-
-        .Sk-description input[type="text"]:focus {
-            border-color: #4285F4;
-        }
-h3 {
-  color: black;
-  padding: 13px;
-  font-family: 'Poppins', sans-serif; /* First choice */
-  font-family: 'Montserrat', sans-serif; /* Second choice */
-  
-  text-align: center;
-  
-}
-.dark-mode h3{
-  color: white;
-}
-        .gradient-text {
-            font-weight: bold;
-            font-size: 24px;
-            background: linear-gradient(to right, #FF932F, #DD2476);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-             
-        }
-.toggle-btn {
-position: absolute;
-  top: 2%;
-right: 2%;
-z-index: 2;
-
-}
-
-.switch {
-  visibility: hidden;
-}
-
-.label {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50px;
-  height: 25px;
-  border-radius: 40px;
-  border: 2px solid darkorange;
-  background-color: #fff;
-  cursor: pointer;
-  text-align: left;
-  user-select: none;
-  transition: background-color 0.3s ease;
-}
-
-.label .fas {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #f1c40f;
-  transition: transform 0.3s ease;
-}
-
-.label .fas.fa-sun {
-  left: 5px;
-  color:red;
-}
-
-.label .fas.fa-moon {
-  right: 5px;
-}
-
-.ball {
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  transform: translate(-3px, -50%);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #FC860B;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.switch:checked ~ .label {
-  background-color: #000000;
-  
-}
-
-
-.switch:checked ~ .label .fas.fa-sun {
-  transform: translateY(0%) translateX(10%);
-  opacity: 0;
-}
-
-.switch:checked ~ .label .fas.fa-moon {
-  transform: translateY(-5%) translateX(-10%);
-}
-
-.switch:checked ~ .label .ball {
-  transform: translate(calc(50px - 29px), -50%);
-}
-.menu-lines {
-    position: absolute;
-    top: 3.5vh; /* Adjusted to use viewport units */
-    left: 2%; /* Adjusted to ensure consistency */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 2.9vh; /* Adjusted to use viewport units */
-    cursor: pointer;
-}
-
-.menu-line {
-    width: 5vw; /* Adjusted to use viewport units */
-    height: 0.3vh; /* Adjusted to use viewport units */
-    background-color: #fff;
-    border-radius: 2px;
-    transition: transform 0.3s ease;
-}
-
-
-        .menu-lines.open .menu-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .menu-lines.open .menu-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-lines.open .menu-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-        
- .navbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-around;
-    padding: 0 0; /* Add some padding to make it look more spaced */
-    z-index: 10; 
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Add a box shadow for the raised effect */
-}
-
-.nav-icon {
-    color: #494137;
-    font-size: 24px;
-    text-decoration: none;
-}
-
-        .dark-mode .navbar{
-           background-color: #000000;
-        }
-        .dark-mode .nav-icon{
-          
-          color: #ffffff;
-          
-        }
-        
-        @keyframes pop {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
- 
-.preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    transition: opacity 0.5s ease-in-out;s
-}
-
-.preloader.hidden {
-    opacity: 0;
-    pointer-events: none; /* Disable pointer events to prevent interaction with hidden preloader */
-}
-
-.preloader-text {
-    color: darkorange;
-    font-family: 'Roboto', sans-serif;
-    font-size: 5vh;
-}
-
-        /* Dark mode styles */
-.dark-mode {
-    background-color: black;
-     
-    /* Add any additional styles for dark mode */
-}
-.dark-mode .Sk-description .
-{
-background-color: black;
-}
-        .menu-lines {
-            position: absolute;
-            top: 3.5%;
-            left: 2%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 2.9vh;
-            cursor: pointer;
-            z-index: 100; /* Ensure it's on top of other elements */
-        }
-
-        .menu-line {
-            width: 5vw;
-            height: 0.3vh;
-            background-color: #fff;
-            border-radius: 2px;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-lines.open .menu-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .menu-lines.open .menu-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-lines.open .menu-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-        .sidebar {
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    padding-top: 20px;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    padding: 8px;
-}
-
-.sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 8px 16px;
-}
-
-.sidebar ul li a:hover {
-    background-color: #333;
-}
-
-/* Main content styles */
-
-.sidebar {
-            display: none; /* Initially hide the sidebar */
-        }
-         @media only screen and (min-width: 1024px) {
-           .content {
-    margin-left: 190px; /* Adjust based on the width of the sidebar */
-    padding: 16px;
-}
-    .navbar{
+    .onboarding-container {
       display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+
+      backdrop-filter: blur(8px);
+      z-index: 10;
     }
-            .sidebar {
-                display: block; /* Show the sidebar */
-                /* Add any additional styling for large screens */
-            }
-        }
-        /* Apply smooth transition animation between dark mode and light mode */
-@keyframes darkModeFade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
- 
+    .onboarding-message {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-align: center;
+      max-width: 80%;
+    }
 
-/* Apply smooth transition animation for reveal effect */
-h1 {
-  overflow: hidden;
-  white-space: nowrap;
-  animation: reveal 2s ease-out forwards;
-}
+    .onboarding-input {
+      font-size: 1.5rem;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      background: var(--card-bg);
+      box-shadow: inset 3px 3px 5px var(--shadow-color), inset -3px -3px 5px rgba(255, 255, 255, 0.7);
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
 
-@keyframes reveal {
-  from {
-    width: 0;
-  }
-  to {
-    width: auto;
-  }
-}
+    .onboarding-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-    </style>
+    .onboarding-button:hover {
+      background-color: #e67300;
+      transform: translateY(-3px);
+    }
+
+    .spiritual-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 9s infinite ease-in-out;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-80px) rotate(180deg);
+      }
+    }
+  </style>
 </head>
+
 <body>
- <div class="preloader" id="preloader">
-        <div class="preloader-text" id="typewriter"></div>
+  <div class="spiritual-particles" id="particles"></div>
+  <div class="container">
+    <div class="logo">
+      <img src="https://www.sakha.chat/logo.png" alt="Sakha Logo">
     </div>
-
-        
-
-         <div class="navbar">
-           <a href="gif.html" class="nav-icon">
-             <i class="fas fa-home" style="color: darkorange;"></i>
-             <!-- Home icon -->
-           </a>
-           <a href="mala.html" class="nav-icon">
-             <i class="fas fa-om"></i> <!-- Meditation icon -->
-           </a>
-           <a href="https://game.sakha.chat" class="nav-icon">
-             <i class="fas fa-gamepad"></i> <!-- Game icon -->
-           </a>
-           <a href="https://vedic.sakha.chat" class="nav-icon">
-             <i class="fas fa-book"></i> <!-- Books icon -->
-           </a>
-           <a href="https://signin.sakha.chat" class="nav-icon">
-             <i class="fas fa-comments"></i> <!-- Chat icon -->
-           </a>
-         </div>
-
- <div class="sidebar">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    <div class="welcome-message" id="welcomeMessage"></div>
+    <div class="auth-container">
+      <input type="email" class="auth-input" placeholder="Email" required>
+      <input type="password" class="auth-input" placeholder="Password" required>
+      <button class="auth-button" onclick="login()">Login</button>
+      <a href="#" class="forgot-password" onclick="forgotPassword()">Forgot Password?</a>
+      <div class="signup-link">
+        Don't have an account? <a href="#" onclick="startOnboarding()">Sign Up</a>
+      </div>
     </div>
-    <!-- Menu lines -->
-    <div class="content">
-    <center>
-      
-      
-        <div id="container">
-            <div id="image-container">
-                      <img src="tempLogo.png" alt="Sakha" width="30%" height="13%" style="margin: 5px ">
+  </div>
 
-                <div id="text-overlay"></div>
-              
-                <img src="logo.png" alt="Image" width="80%">
+  <div class="onboarding-container" id="onboardingContainer">
+    <div class="onboarding-message" id="onboardingMessage"></div>
+    <input type="text" class="onboarding-input" id="onboardingInput" style="display: none;">
+    <button class="onboarding-button" id="onboardingButton" onclick="nextOnboardingStep()" style="display: none;">Next</button>
+  </div>
 
-            </div>
+  <script>
+    const welcomeMessages = [
+      "Embark on a journey of self-discovery",
+      "Unlock the wisdom within you",
+      "Find peace in the chaos of life",
+      "Cultivate mindfulness and inner strength",
+      "Connect with your higher self"
+    ];
 
-        </div>
+    let currentMessageIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
 
-                                         <h3> <span class="gradient-text">Sakha </span>your guiding light in a world full of distractions We provide the direction you need to  <b>transform your life</b></h3>           <br> <br>
-        <b><u><h2>Explore What Sakha Offers:</h2></u></b>
-        <h3>Are you feeling bored or seeking guidance? <br>Chat with <span class="gradient-text">Sakha Ai</span> for entertaining conversations and insightful responses drawn from scriptures, offering solutions to life's queries.</h3>
-        <i><h3>"Where boredom ends, wisdom begins."</h3></i>
-        <div class="Sk-box">
-            <div class="Sk-header">Preview access</div>
-            <div class="Sk-title"> <span class="gradient-text">Chat with Sakha</span></div>
-            <div class="Sk-description">
-                <div class="chat-container" id="chatContainer">
-                    <div class="item">
-                        <div class="msg">
-                            <div class="messages__item messages__item--operator">
-                                <p style="font-size: 20px;width:100%;">haribol</p>
-                                <div class="icon icon-right"> <img class="user" src="man1.png" alt=""> </div>
-                            </div>
-                            <div class="messages__item messages__item--visitor">
-                                <div class="icon icon-left"> <img class="user" src="krishna1.png" alt=""> </div>
-                                <p style="font-size: 20px; width:100%;">Haribol. I am servant of Krishna. I have no capacity, but I serve Krishna to my best knowledge. Just like you are serving Krishna to your best knowledge. But Krishna is so kind. He sees the service, not the capacity. I have no capacity. I simply depend on Krishna.</p>
-                            </div>
-                            <div class="messages__item messages__item--operator">
-                                <p style="font-size: 20px;width:100%;">What are you doing?</p>
-                                <div class="icon icon-right"> <img class="user" src="man1.png" alt=""> </div>
-                            </div>
-                            <div class="messages__item messages__item--visitor">
-                                <div class="icon icon-left"> <img class="user" src="krishna1.png" alt=""> </div>
-                                <p style="font-size: 20px; width:100%;">I am just experimenting.</p>
-                            </div>
-                        </div>
-                                                    <div class="messages__item messages__item--operator">
-                                <p style="font-size: 20px;width:100%;">what are you experimenting ?</p>
-                                <div class="icon icon-right"> <img class="user" src="man1.png" alt=""> </div>
-                            </div>
-                            <div class="messages__item messages__item--visitor">
-                                <div class="icon icon-left"> <img class="user" src="krishna1.png" alt=""> </div>
-                                <p style="font-size: 20px; width:100%;">I am experimenting with drugs.</p>
-                            </div>
-                            <div class="messages__item messages__item--operator">
-                                <p style="font-size: 20px;width:100%;">seriously drugs?</p>
-                                <div class="icon icon-right"> <img class="user" src="man1.png" alt=""> </div>
-                            </div>
-                            <div class="messages__item messages__item--visitor">
-                                <div class="icon icon-left"> <img class="user" src="krishna1.png" alt=""> </div>
-                                <p style="font-size: 20px; width:100%;">what is this, serious drugs?</p>
-                            </div>
+    function typeWriter() {
+      const welcomeMessage = document.getElementById('welcomeMessage');
+      const currentMessage = welcomeMessages[currentMessageIndex];
 
-			    <div class="messages__item messages__item--operator">
-                                <p style="font-size: 20px;width:100%;">what drugs? that is illegal.</p>
-                                <div class="icon icon-right"> <img class="user" src="man1.png" alt=""> </div>
-                            </div>
-                            <div class="messages__item messages__item--visitor">
-                                <div class="icon icon-left"> <img class="user" src="krishna1.png" alt=""> </div>
-                                <p style="font-size: 20px; width:100%;">No, no. Not that kind of drugs. This is spirinal drug I drug. Chanting Hare Krishna, Hare Krishno, Krishna Krishna, Hare Hare, Hare Rama, Hare Rama, Rama Rama, Hare Hare. This is also drug, but it is not bad. It is very nice. It is the best drug because it awakens your spiritual consciousness</p>
-                            </div>
-                      
-                    </div>
-                </div>
-                <input type="text" placeholder="Type your message..." style="border-radius: 10px">
-            </div>
-		<a href = "https://signin.sakha.chat"> <button class="try-button">Try Chat</button></a>
-           
-            <div class="toggle-btn">
-                <input type="checkbox" id="switch" name="theme" class="switch" />
-                <label for="switch" class="label">
-                    <div class="ball"></div>
-                </label>
-            </div>
-        </div>
+      if (isDeleting) {
+        welcomeMessage.textContent = currentMessage.substring(0, currentCharIndex + 10);
+        currentCharIndex--;
+      } else {
+        welcomeMessage.textContent = currentMessage.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+      }
 
-        <h3>All Leaders are <span class="gradient-text">readers</span>. As we know, Knowledge, is power, and one needs the knowledge to grow in life, so we have inculcated some of the most useful books, meant for holistic development.</h3>
-        <i><h3>"Leaders are readers. Knowledge is power"</h3></i>
-        <div class="Sk-box" id="videoContainer">
-            <div class="Sk-header">Preview access</div>
-            <div class="Sk-title"> <span class="gradient-text">Read Books</span></div>
-            <div class="Sk-description">
-              
-			  <section id="upanishads">
-			<div class="container">
+      if (!isDeleting && currentCharIndex === currentMessage.length) {
+        isDeleting = true;
+        typingSpeed = 40;
+        setTimeout(() => {
+          isDeleting = false;
+          currentMessageIndex = (currentMessageIndex + 1) % welcomeMessages.length;
+          typingSpeed = 60;
+        }, 1400);
+      } else if (isDeleting && currentCharIndex === 0) {
+        isDeleting = false;
+      }
 
-			  <div class="slider">
-				  <div class="owl-carousel">
-					<div class="slider-card">
-					  <div>
-						<a href="https://drive.google.com/file/d/13OGtDG8xuGn-NZia4UUuiurlN4bI1ZXu/view?usp=drive_link">
-						  <img src="Assets/Upanishad 1.png" alt="108 Upanishad Part-1" ></a>
-					  </div>
-					  <h5 class="mb-0 text-center p-2">108 Upanishad <span>BrahmaVidyaKhand</span></h5>
-					</div>
-					<div class="slider-card">
-					  <div>
-						<a href="https://drive.google.com/file/d/1nL-krH-JE27FK3K4SKe9Wdj09biTkhEM/view?usp=drive_link">
-						  <img src="Assets/Upanishad 2.png" alt="108 Upanishad Part-2" />
-						</a>
-					  </div>
-					  <h5 class="mb-0 text-center p-2"><b>108 Upanishad <span>GyanKhand</span></b></h5>
-					</div>
-					<div class="slider-card">
-					  <div >
-						<a href="https://drive.google.com/file/d/1QsSYQIVqJr1waCFegOZgkw5SAeVogt4L/view?usp=drive_link">
-						  <img src="Assets/upanishad -3.png" alt="108 Upanishad Part-3" />
-						</a>
-					  </div>
-					  <h5 class="mb-0 text-center p-2"><b>108 Upanishad <span>SadhnaKhand</span></b></h5>
-					</div>
-					<div class="slider-card">
-					  <div>
-						<a href="https://drive.google.com/file/d/1O7zCzTChj93cINSzG-mSxTg9IKwy6Rn-/view?usp=drive_link">
-						  <img src="Assets/Cover.jpg" alt="108-upanishads-with-upanishad-brahmam-commentary"/>
-						  </a>
-					  </div>
-					  <h5 class="mb-0 text-center p-2"><b>Das'Opanishads <span>With Commentary</span></b></h5>
-					</div>
-				  </div>
-				</div>
-			</div>
- 
-		  
-
-            </div>
-		<a href="https://vedic.sakha.chat/"> <button class="try-button">Let's Read?</button></a>
-           
-        </div>
-        <h3>Find peace and solace amidst life's challenges via <span class="gradient-text">Mantra meditation</span>. Access digital chanting beads for effortless chanting, drawing from diverse spiritual traditions.</h3>
-        <i><h3>"In the age of quarrels and depression, find solace in chanting."</h3></i>
-        <div class="Sk-box" id="videoContainer">
-            <div class="Sk-header">Preview access</div>
-            <div class="Sk-title"> <span class="gradient-text">Mantra Meditation</span></div>
-            <div class="Sk-description">
-                <img id="gif" src="mala.gif" alt="GIF">
-            </div>
-            <a href="https://chant.sakha.chat"><button class="try-button">Try Chanting</button></a>
-        </div>
-        <h3>Embark on a journey of self-discovery with our <span class="gradient-text">Challenge Game</span>. Over 50 days, engage in a series of 50 tasks designed to foster focus and promote a winning, healthy lifestyle.</h3>
-        <i><h3>"Embrace the challenge and unlock your potential."</h3></i>
-        <div class="Sk-box" id="videoContainer">
-            <div class="Sk-header">Preview access</div>
-            <div class="Sk-title"> <span class="gradient-text">The Challenge Game</span></div>
-            <div class="Sk-description">
-                <img src="game.png" alt="Image" width="350">
-            </div>
-		<a href="https://game.sakha.chat"><button class="try-button">Let's Play?</button></a>    
-                
-            </div>
-<!--             <a href="https://chant.sakha.chat"><button class="try-button">Try Chanting</button></a> -->
-        </div>
-    </center>
-    </div>
-    <script src="https://kit.fontawesome.com/4a3b1f73a2.js" crossorigin="anonymous"></script>
-    <script>
-        let chatVisible = false;
-        let isScrolling = false;
-        const chatContainer = document.getElementById('chatContainer');
-        const videoContainer = document.getElementById('videoContainer');
-let scrollTimeout;
-
- 
-const texts = ['Sakha'];
-        let count = 0;
-        let index = 0;
-        let currentText = '';
-        let letter = '';
-
-        (function type() {
-            if (count === texts.length) {
-                count = 0;
-            }
-            currentText = texts[count];
-            letter = currentText.slice(0, ++index);
-            document.getElementById('typewriter').textContent = letter;
-            if (letter.length === currentText.length) {
-                count++;
-                index = 0;
-            }
-            setTimeout(type, 250);
-		setTimeout(() => {
-        const preloader = document.getElementById('preloader');
-        preloader.classList.add('hidden');
-    }, 1000);
-        })();
-
-        // Hide preloader when content is loaded
-         
-    
-  function handleScroll() {
-    
-    const video = document.getElementById('scrollVideo');
-    if (scrollTimeout) {
-      clearTimeout(scrollTimeout);
+      const randomSpeed = Math.random() * 50 + 70;
+      setTimeout(typeWriter, isDeleting ? typingSpeed : randomSpeed);
     }
-    
-    video.play();
-    
-    scrollTimeout = setTimeout(() => {
-      video.pause();
-    },1); // Adjust this timeout as per your preference
-  }
-  
 
-  window.addEventListener('scroll', handleScroll);
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    if (entry.target.id === 'videoContainer') {
-                        // Start playing video when it enters the viewport
-                        const video = document.getElementById('scrollVideo');
-                        video.play();
-                    } else if (entry.target.id === 'chatContainer') {
-                        // Start scrolling chat when it starts entering the viewport
-                        chatVisible = true;
-                        scrollChat();
-                    }
-                } else {
-                    if (entry.target.id === 'videoContainer') {
-                        // Pause video when it leaves the viewport
-                        const video = document.getElementById('scrollVideo');
-                        video.pause();
-                    }
-                }
-            });
-        });
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 10;
 
-        observer.observe(videoContainer);
-        observer.observe(chatContainer);
-
-        window.addEventListener('scroll', () => {
-            isScrolling = true;
-        });
-
-        function scrollChat() {
-            if (isScrolling && chatVisible) {
-                chatContainer.scrollTop += 2;
-                isScrolling = false;
-            }
-            setTimeout(scrollChat, );
-        }
-        // Select the switch element
-const switchInput = document.getElementById('switch');
-
-// Add event listener to the switch for change event
-switchInput.addEventListener('change', function() {
-    // Check if the switch is checked (dark mode)
-    if (this.checked) {
-        // Add a class to the body to switch to dark mode
-        document.body.classList.add('dark-mode');
-    } else {
-        // Remove the class to switch back to light mode
-        document.body.classList.remove('dark-mode');
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.width = `${Math.random() * 10 + 10}px`;
+        particle.style.height = particle.style.width;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        particlesContainer.appendChild(particle);
+      }
     }
-});
-switchInput.addEventListener('change', function() {
-    // Check if the switch is checked (dark mode)
-    if (this.checked) {
-        // Add a class to the body to switch to dark mode
-        document.body.classList.add('light-mode');
-    } else {
-        // Remove the class to switch back to light mode
-        document.body.classList.remove('light-mode');
+
+    function login() {
+      // Implement login functionality here
+      alert("Login functionality to be implemented");
     }
-});
 
-    </script>
-		  <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    function forgotPassword() {
+      // Implement forgot password functionality here
+      alert("Forgot password functionality to be implemented");
+    }
 
-     <script src="script.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script> 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
-	<script src="owl.carousel.min.js"></script>
-	<script src="owlscript.js"></script>
+    const onboardingSteps = [
+      { message: "Namaste! I'm Sakha, your spiritual friend. What's your name?", inputType: "text", placeholder: "Enter your name" },
+      { message: "It's wonderful to meet you, {name}! What's your email address?", inputType: "email", placeholder: "Enter your email" },
+      { message: "Great! Now, let's create a password to keep your journey safe.", inputType: "password", placeholder: "•••••••" },
+      { message: "Thank you, {name}! Your spiritual journey with Sakha begins now. Welcome aboard!" }
+    ];
+
+    let currentStep = 0;
+    let userData = {};
+
+    function startOnboarding() {
+      document.querySelector('.container').style.display = 'none';
+      document.getElementById('onboardingContainer').style.display = 'flex';
+      showOnboardingStep();
+    }
+
+    function showOnboardingStep() {
+      const messageEl = document.getElementById('onboardingMessage');
+      const inputEl = document.getElementById('onboardingInput');
+      const buttonEl = document.getElementById('onboardingButton');
+
+      let message = onboardingSteps[currentStep].message;
+      if (userData.name) {
+        message = message.replace('{name}', userData.name);
+      }
+
+      messageEl.textContent = '';
+      inputEl.style.display = currentStep < onboardingSteps.length - 1 ? 'block' : 'none';
+      buttonEl.style.display = 'block';
+
+      if (currentStep < onboardingSteps.length - 1) {
+        inputEl.type = onboardingSteps[currentStep].inputType;
+        inputEl.placeholder = onboardingSteps[currentStep].placeholder;
+      } else {
+        buttonEl.textContent = 'Start Your Journey';
+      }
+
+      typeOnboardingMessage(message);
+    }
+
+    function typeOnboardingMessage(message, index = 0) {
+      const messageEl = document.getElementById('onboardingMessage');
+      if (index < message.length) {
+        messageEl.textContent += message[index];
+        setTimeout(() => typeOnboardingMessage(message, index + 1), 30);
+      }
+    }
+
+    function nextOnboardingStep() {
+      const inputEl = document.getElementById('onboardingInput');
+
+      if (currentStep < onboardingSteps.length - 1) {
+        if (currentStep === 0) userData.name = inputEl.value;
+        if (currentStep === 1) userData.email = inputEl.value;
+        if (currentStep === 2) userData.password = inputEl.value;
+
+        inputEl.value = '';
+      }
+
+      currentStep++;
+
+      if (currentStep < onboardingSteps.length) {
+        showOnboardingStep();
+      } else {
+        // Here you would typically send the userData to your server
+        console.log("User data:", userData);
+        alert("Sign up complete! Welcome to Sakha.");
+        window.location.href = 'https://sakha-five.vercel.app/home.html'; //eload the page to return to the initial state
+      }
+    }
+
+    typeWriter();
+    createParticles();
+  </script>
 </body>
-</html>
 
+</html>
