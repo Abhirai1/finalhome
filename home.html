@@ -40,7 +40,7 @@
         </div>
        <div class="chat-input">
   <input type="text" id="userInput" placeholder="Type your message here...">
-  <button onclick="sendMessage(); getChatResponse();"><i class="fas fa-paper-plane"></i></button>
+  <button onclick="sendMessage(); "><i class="fas fa-paper-plane"></i></button>
        </div> 
         </div>
       </div>
@@ -221,13 +221,11 @@
       const prompt = document.getElementById('userInput');
       prompt.value = `Tell me about ${topic}`;
       sendMessage();
-     getChatResponse();
+    
     }
 
     let currentSession = [];
-
-async function getChatResponse() {
-  const prompt = document.getElementById('userInput').value;
+async function getChatResponse(prompt) {
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -249,7 +247,7 @@ async function getChatResponse() {
 
   } catch (error) {
     apiRes = `Error: ${error.message}`;
-     // Display error message
+    displayBotMessage(apiRes); // Display error message
   }
 }
 
@@ -299,6 +297,8 @@ function sendMessage() {
   const historyIcon = document.querySelector('.history-icon');
 
   if (userInput.value.trim() !== '') {
+    const prompt = userInput.value; // Store the prompt before clearing the input
+
     enterFullscreenMode();
 
     document.querySelector('.logo').style.display = 'none';
@@ -313,16 +313,19 @@ function sendMessage() {
 
     const userMessage = document.createElement('div');
     userMessage.className = 'message user-message';
-    userMessage.textContent = userInput.value;
+    userMessage.textContent = prompt; // Use the stored prompt value
     chatMessages.appendChild(userMessage);
 
-    currentSession.push({ role: 'user', content: userInput.value });
+    currentSession.push({ role: 'user', content: prompt });
 
     typingIndicator.classList.add('active');
     typingIndicator.style.animation = 'pulse 1s infinite';
 
+    // Clear the input field
+    userInput.value = '';
+
     // Call getChatResponse to get and display the bot's response
-    
+    getChatResponse(prompt);
   }
 }
 
@@ -331,7 +334,7 @@ document.getElementById('userInput').addEventListener('keypress', function(e) {
     sendMessage();
   }
 });
-    function likeMessage(button) {
+   function likeMessage(button) {
       button.classList.toggle('active');
       // Add like functionality
     }
@@ -463,7 +466,7 @@ document.getElementById('userInput').addEventListener('keypress', function(e) {
       historyItem.innerHTML = `
     <div class="history-item-title">${title}</div>
     <div class="history-item-content">${content}</div>
-  `;
+  `; 
       historyPanel.appendChild(historyItem);
     }
 
