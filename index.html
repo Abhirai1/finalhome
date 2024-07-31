@@ -1,214 +1,319 @@
- <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chatbot</title>
-   
   <title>Sakha - Your Spiritual Friend</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="chat.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- 
- <link rel="stylesheet" href="chat.css">
+  <style>
+    :root {
+      --bg-color: #f0f0f0;
+      --primary-color: #FF8C00;
+      --text-color: #333;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --card-bg: rgba(255, 255, 255, 0.8);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+   font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      animation: pulse 1s;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(2);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .logo img {
+      width: 200px;
+      filter: drop-shadow(3px 3px 5px var(--shadow-color)) drop-shadow(-3px -3px 5px rgba(255, 255, 255, 0.11));
+      border-radius: 20px;
+    }
+
+    .welcome-message {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      position: relative;
+      height: 2.5em;
+      min-height: 2.5em;
+      
+      filter: drop-shadow(3px 3px 5px var(--shadow-color)) drop-shadow(-3px -3px 5px rgba(255, 255, 255, 1));
+    }
+
+    .auth-container {
+      background: var(--card-bg);
+      backdrop-filter: blur(0px);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 8px 8px 15px var(--shadow-color), -8px -8px 15px rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+      width: 95%;
+
+      max-width: 400px;
+      
+    }
+
+    .auth-input {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: inset 3px 3px 5px var(--shadow-color), inset -3px -3px 5px rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .auth-input:focus {
+      outline: none;
+      box-shadow: inset 5px 5px 8px var(--shadow-color), inset -5px -5px 8px rgba(255, 255, 255, 0.7);
+    }
+
+    .auth-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 10px 0;
+      width: 100%;
+      box-shadow: 3px 3px 5px var(--shadow-color), -3px -3px 5px rgba(255, 255, 255, 0.7);
+    }
+
+    .auth-button:hover {
+      background-color: #e67300;
+      transform: translateY(-3px);
+    }
+
+    .forgot-password {
+      margin-top: 10px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+
+    .signup-link {
+      margin-top: 20px;
+      font-size: 1rem;
+    }
+
+    .signup-link a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    .onboarding-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+
+    .onboarding-message {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-align: center;
+      max-width: 80%;
+    }
+
+    .onboarding-input {
+      font-size: 1.5rem;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      background: var(--card-bg);
+      box-shadow: inset 3px 3px 5px var(--shadow-color), inset -3px -3px 5px rgba(255, 255, 255, 0.7);
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+
+    .onboarding-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .onboarding-button:hover {
+      background-color: #e67300;
+      transform: translateY(-3px);
+    }
+
+    .spiritual-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 9s infinite ease-in-out;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-80px) rotate(180deg);
+      }
+    }
+  </style>
 </head>
+
 <body>
-
-
-<div class="spiritual-particles" id="particles"></div>
-  <div class="container" id="appContainer">
-    <div class="logo"><img src="https://www.sakha.chat/logo.png" alt="Sakha Logo"></div>
+  <div class="spiritual-particles" id="particles"></div>
+  <div class="container">
+    <div class="logo">
+      <img src="https://www.sakha.chat/logo.png" alt="Sakha Logo">
+    </div>
     <div class="welcome-message" id="welcomeMessage"></div>
-    <div class="chat-container" id="chatContainer">
-      <div class="chat-header"><button class="back-button" onclick="goBack()"><i class="fas fa-arrow-left"></i></button><span id="chatHeaderText">Hare Krishna Nilesh</span></div>
-      <div class="chat-messages" id="chatMessages">
-        <div class="message bot-message">Namaste! I'm Sakha, your spiritual friend. How can I guide you today?<div class="message-actions"><button class="message-action" onclick="likeMessage(this)"><i class="fas fa-thumbs-up"></i></button><button class="message-action" onclick="dislikeMessage(this)"><i class="fas fa-thumbs-down"></i></button><button class="message-action" onclick="copyMessage(this)"><i class="fas fa-copy"></i></button></div>
-        </div>
-      </div>
-      <div class="topics" id="topics">
-        <div class="topic-bullet" onclick="selectTopic('Anxiety')">Anxiety</div>
-        <div class="topic-bullet" onclick="selectTopic('Depression')">Depression</div>
-        <div class="topic-bullet" onclick="selectTopic('Mindfulness')">Mindfulness</div>
-        <div class="topic-bullet" onclick="selectTopic('Spirituality')">Spirituality</div>
-        <div class="topic-bullet" onclick="selectTopic('Meditation')">Meditation</div>
-      </div>
-      <div class="chat-input-container">
-        <div class="typing-indicator" id="typingIndicator">
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-        </div>
-       <div class="chat-input">
-  <input type="text" id="userInput" placeholder="Type your message here...">
-  <button onclick="sendMessage(); "><i class="fas fa-paper-plane"></i></button>
-       </div> 
-        </div>
-      </div>
-    </div>
-    <div class="activity-section">
-      <h2>Your Spiritual Journey</h2>
-      <div class="activity-cards">
-        <div class="activity-card" id="chantingCard">
-          <div class="activity-info">
-            <div class="activity-title"><i class="fas fa-om"></i>Chanting</div><button class="activity-button" onclick="completeActivity('chanting')">Complete Chanting</button>
-          </div>
-          <div class="progress-circle" data-progress="0"></div>
-        </div>
-        <div class="activity-card" id="readingCard">
-          <div class="activity-info">
-            <div class="activity-title"><i class="fas fa-book"></i>Reading</div><button class="activity-button" onclick="completeActivity('reading')">Complete Reading</button>
-          </div>
-          <div class="progress-circle" data-progress="0"></div>
-        </div>
-        <div class="activity-card" id="gameStreakCard">
-          <div class="activity-info">
-            <div class="activity-title"><i class="fas fa-gamepad"></i>Game Streak</div><button class="activity-button" onclick="completeActivity('gameStreak')">Complete Game</button>
-          </div>
-          <div class="progress-circle" data-progress="0"></div>
-        </div>
-      </div>
-    </div>
-    <div class="info-section">
-      <h2>Spiritual Insights</h2>
-      <div class="info-cards">
-        <div class="info-card">
-          <div class="info-title"><i class="fas fa-bullhorn"></i> Announcements</div>
-          <div class="info-content">Join us for a special meditation session this Sunday at 10 AM IST.</div>
-        </div>
-        <div class="info-card">
-          <div class="info-title"><i class="fas fa-book-open"></i> Shloka of the Day</div>
-          <div class="info-content">"Yogaḥ karmasu kauśalam" - Yoga is skill in action. (Bhagavad Gita 2.50)</div>
-        </div>
-        <div class="info-card" style="margin-bottom: 10vh;">
-          <div class="info-title"><i class="fas fa-newspaper"></i> Spiritual News</div>
-          <div class="info-content">New study shows regular meditation can significantly reduce stress levels.</div>
-        </div>
+    <div class="auth-container">
+      <input type="email" class="auth-input" placeholder="Email" required>
+      <input type="password" class="auth-input" placeholder="Password" required>
+      <button class="auth-button" onclick="login()">Login</button>
+      <a href="#" class="forgot-password" onclick="forgotPassword()">Forgot Password?</a>
+      <div class="signup-link">
+        Don't have an account? <a href="#" onclick="startOnboarding()">Sign Up</a>
       </div>
     </div>
   </div>
-  <nav class="navigation">
-      <a href="#" class="nav-item nav-active"><i class="fas fa-home"></i><span>Home</span>
-      </a>
-    <a href="https://vedic.sakha.chat" class="nav-item"><i class="fas fa-book"></i><span>Books</span></a><a href="https://home.sakha.chat/mala.html" class="nav-item"><i class="fas fa-om"></i><span>Chanting</span></a>
-  <a href="https://gita.sakha.chat" class="nav-item"><i class="fas fa-leaf"></i><span>Remedies</span>
-  </a>
-  <a href="https://game.sakha.chat" class="nav-item"><i class="fas fa-gamepad"></i><span>Game</span></a></nav>
-  <div class="notification-icon" onclick="toggleNotifications()" data-count="3"><i class="fas fa-bell"></i></div>
-  <div class="notification-panel" id="notificationPanel">
-    <div class="notification-panel-header">
-      <h2 class="notification-panel-title">Notifications</h2><button class="close-notification-panel" onclick="toggleNotifications()"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="notification-item">
-      <div class="notification-item-title">New Meditation Technique</div>
-      <div class="notification-item-content">Explore our latest guided meditation for inner peace.</div>
-    </div>
-    <div class="notification-item">
-      <div class="notification-item-title">Chanting Milestone</div>
-      <div class="notification-item-content">Your friend Radha has completed a 7-day chanting streak!</div>
-    </div>
-    <div class="notification-item">
-      <div class="notification-item-title">New Spiritual Article</div>
-      <div class="notification-item-content">"Finding Peace in Chaos" - Read our latest blog post.</div>
-    </div>
+
+  <div class="onboarding-container" id="onboardingContainer">
+    <div class="onboarding-message" id="onboardingMessage"></div>
+    <input type="text" class="onboarding-input" id="onboardingInput" style="display: none;">
+    <button class="onboarding-button" id="onboardingButton" onclick="nextOnboardingStep()" style="display: none;">Next</button>
   </div>
-  <div class="history-icon" onclick="toggleHistory()"><i class="fas fa-history"></i></div>
-  <div class="history-panel" id="historyPanel">
-    <style>
-      @keyframes slideIn {
-        from {
-          transform: translateX(100%);
-          opacity: 0;
-        }
-
-        to {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
-
-      @keyframes slideOut {
-        from {
-          transform: translateX(0);
-          opacity: 1;
-        }
-
-        to {
-          transform: translateX(100%);
-          opacity: 0;
-        }
-      }
-
-      .history-panel {
-        animation: slideIn 0.5s ease-out;
-        transform-origin: right center;
-      }
-
-      .history-panel.closing {
-        animation: slideIn 0.5s ease-out;
-        transform-origin: right center;
-      }
-    </style>
-    <div class="history-panel-header">
-      <h2 class="history-panel-title">Conversation History</h2><button class="close-history-panel" onclick="toggleHistory()"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="history-item">
-      <div class="history-item-title">Meditation Techniques</div>
-      <div class="history-item-content">Discussion about various meditation techniques and their benefits.</div>
-    </div>
-    <div class="history-item">
-      <div class="history-item-title">Understanding Karma</div>
-      <div class="history-item-content">Exploring the concept of karma and its impact on our lives.</div>
-    </div>
-    <div class="history-item">
-      <div class="history-item-title">Bhagavad Gita Insights</div>
-      <div class="history-item-content">Key teachings from the Bhagavad Gita and their modern applications.</div>
-    </div>
-  </div>
-  <div class="chanting-overlay" id="chantingOverlay">
-    <h1>Hare Krishna</h1><button class="close-overlay" onclick="closeChantingOverlay()"><i class="fas fa-times"></i></button>
-         </div>
- 
 
   <script>
-    const welcomeMessages = ["Find your inner peace", "Discover spiritual wisdom", "Embrace mindful living", "Navigate life's journey", "Cultivate inner harmony"];
+    const welcomeMessages = [
+      "Embark on a journey of self-discovery",
+      "Unlock the wisdom within you",
+      "Find peace in the chaos of life",
+      "Cultivate mindfulness and inner strength",
+      "Connect with your higher self"
+    ];
+
     let currentMessageIndex = 0;
     let currentCharIndex = 0;
     let isDeleting = false;
     let typingSpeed = 100;
-    let apiRes=''; 
-  let prompt='';
+
     function typeWriter() {
       const welcomeMessage = document.getElementById('welcomeMessage');
       const currentMessage = welcomeMessages[currentMessageIndex];
+
       if (isDeleting) {
-        welcomeMessage.textContent = currentMessage.substring(0, currentCharIndex - 1);
+        welcomeMessage.textContent = currentMessage.substring(0, currentCharIndex + 10);
         currentCharIndex--;
       } else {
         welcomeMessage.textContent = currentMessage.substring(0, currentCharIndex + 1);
         currentCharIndex++;
       }
+
       if (!isDeleting && currentCharIndex === currentMessage.length) {
         isDeleting = true;
-        typingSpeed = 100;
+        typingSpeed = 40;
         setTimeout(() => {
           isDeleting = false;
           currentMessageIndex = (currentMessageIndex + 1) % welcomeMessages.length;
-          typingSpeed = 0;
-        }, 2000);
+          typingSpeed = 60;
+        }, 1400);
       } else if (isDeleting && currentCharIndex === 0) {
         isDeleting = false;
       }
-      const randomSpeed = Math.random() * 50 + 50;
+
+      const randomSpeed = Math.random() * 50 + 70;
       setTimeout(typeWriter, isDeleting ? typingSpeed : randomSpeed);
     }
 
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
-      const particleCount = 20;
+      const particleCount = 10;
+
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
-        particle.style.width = `${Math.random() * 10 + 5}px`;
+        particle.style.width = `${Math.random() * 10 + 10}px`;
         particle.style.height = particle.style.width;
         particle.style.left = `${Math.random() * 100}%`;
         particle.style.top = `${Math.random() * 100}%`;
@@ -217,264 +322,90 @@
       }
     }
 
-    function selectTopic(topic) {
-      const prompt = document.getElementById('userInput');
-      prompt.value = `Tell me about ${topic}`;
-      sendMessage();
-    
+    function login() {
+      // Implement login functionality here
+      alert("Login functionality to be implemented");
     }
 
-    let currentSession = [];
-async function getChatResponse(prompt) {
-  try {
-    const response = await fetch('https://home.sakha.chat/api/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ prompt: prompt })
-    });
-    const data = await response.json();
-
-    if (data.choices && data.choices[0] && data.choices[0].message) {
-      apiRes = data.choices[0].message.content;
-    } else {
-      apiRes = "No valid response received.";
+    function forgotPassword() {
+      // Implement forgot password functionality here
+      alert("Forgot password functionality to be implemented");
     }
 
-    // Call displayBotMessage here as soon as the response is received
-    displayBotMessage(apiRes);
+    const onboardingSteps = [
+      { message: "Namaste! I'm Sakha, your spiritual friend. What's your name?", inputType: "text", placeholder: "Enter your name" },
+      { message: "It's wonderful to meet you, {name}! What's your email address?", inputType: "email", placeholder: "Enter your email" },
+      { message: "Great! Now, let's create a password to keep your journey safe.", inputType: "password", placeholder: "•••••••" },
+      { message: "Thank you, {name}! Your spiritual journey with Sakha begins now. Welcome aboard!" }
+    ];
 
-  } catch (error) {
-    apiRes = `Error: ${error.message}`;
-    displayBotMessage(apiRes); // Display error message
-  }
-}
+    let currentStep = 0;
+    let userData = {};
 
-function displayBotMessage(botResponse) {
-  const chatMessages = document.getElementById('chatMessages');
-  const typingIndicator = document.getElementById('typingIndicator');
-  
-  typingIndicator.classList.remove('active');
-  typingIndicator.style.animation = '';
-
-  const botMessage = document.createElement('div');
-  botMessage.className = 'message bot-message';
-  chatMessages.appendChild(botMessage);
-
-  const words = botResponse.split(' ');
-  words.forEach((word, index) => {
-    const span = document.createElement('span');
-    span.className = 'word';
-    span.textContent = word + ' ';
-    span.style.animationDelay = `${index * 0.1}s`;
-    botMessage.appendChild(span);
-  });
-
-  const messageActions = document.createElement('div');
-  messageActions.className = 'message-actions';
-  messageActions.innerHTML = `
-    <button class="message-action" onclick="likeMessage(this)"><i class="fas fa-thumbs-up"></i></button>
-    <button class="message-action" onclick="dislikeMessage(this)"><i class="fas fa-thumbs-down"></i></button>
-    <button class="message-action" onclick="copyMessage(this)"><i class="fas fa-copy"></i></button>
-  `;
-  botMessage.appendChild(messageActions);
-
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-
-  currentSession.push({ role: 'assistant', content: botResponse });
-}
-
-function sendMessage() {
-  const userInput = document.getElementById('userInput');
-  const chatMessages = document.getElementById('chatMessages');
-  const chatContainer = document.getElementById('chatContainer');
-  const appContainer = document.getElementById('appContainer');
-  const typingIndicator = document.getElementById('typingIndicator');
-  const topics = document.getElementById('topics');
-  const chatHeaderText = document.getElementById('chatHeaderText');
-  const notificationIcon = document.querySelector('.notification-icon');
-  const historyIcon = document.querySelector('.history-icon');
-
-  if (userInput.value.trim() !== '') {
-    const prompt = userInput.value; // Store the prompt before clearing the input
-
-    enterFullscreenMode();
-
-    document.querySelector('.logo').style.display = 'none';
-    document.querySelector('.welcome-message').style.display = 'none';
-    document.querySelector('.activity-section').style.display = 'none';
-    document.querySelector('.info-section').style.display = 'none';
-    topics.style.display = 'none';
-    notificationIcon.style.display = 'none';
-    historyIcon.style.display = 'flex';
-
-    chatHeaderText.textContent = 'Sakha';
-
-    const userMessage = document.createElement('div');
-    userMessage.className = 'message user-message';
-    userMessage.textContent = prompt; // Use the stored prompt value
-    chatMessages.appendChild(userMessage);
-
-    currentSession.push({ role: 'user', content: prompt });
-
-    typingIndicator.classList.add('active');
-    typingIndicator.style.animation = 'pulse 1s infinite';
-
-    // Clear the input field
-    userInput.value = '';
-
-    // Call getChatResponse to get and display the bot's response
-    getChatResponse(prompt);
-  }
-}
-
-document.getElementById('userInput').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') {
-    sendMessage();
-  }
-});
-   function likeMessage(button) {
-      button.classList.toggle('active');
-      // Add like functionality
+    function startOnboarding() {
+      document.querySelector('.container').style.display = 'none';
+      document.getElementById('onboardingContainer').style.display = 'flex';
+      showOnboardingStep();
     }
 
-    function dislikeMessage(button) {
-      button.classList.toggle('active');
-      // Add dislike functionality
-    }
+    function showOnboardingStep() {
+      const messageEl = document.getElementById('onboardingMessage');
+      const inputEl = document.getElementById('onboardingInput');
+      const buttonEl = document.getElementById('onboardingButton');
 
-    function copyMessage(button) {
-      const message = button.closest('.message').textContent;
-      navigator.clipboard.writeText(message).then(() => {
-        // Show a tooltip or notification that the message was copied
-      });
-    }
-
-    function completeActivity(activity) {
-      if (activity === 'chanting') {
-        openChantingOverlay();
+      let message = onboardingSteps[currentStep].message;
+      if (userData.name) {
+        message = message.replace('{name}', userData.name);
       }
-      const card = document.getElementById(`${activity}Card`);
-      const progressCircle = card.querySelector('.progress-circle');
-      let progress = parseInt(progressCircle.getAttribute('data-progress'));
-      progress += 10;
-      if (progress > 100) progress = 100;
-      progressCircle.setAttribute('data-progress', progress);
-      progressCircle.style.background = `conic-gradient(var(--primary-color) ${progress * 3.6}deg, #ededed 0deg)`;
 
-      card.style.animation = 'pulse 0.5s';
-      setTimeout(() => {
-        card.style.animation = '';
-      }, 500);
+      messageEl.textContent = '';
+      inputEl.style.display = currentStep < onboardingSteps.length - 1 ? 'block' : 'none';
+      buttonEl.style.display = 'block';
+
+      if (currentStep < onboardingSteps.length - 1) {
+        inputEl.type = onboardingSteps[currentStep].inputType;
+        inputEl.placeholder = onboardingSteps[currentStep].placeholder;
+      } else {
+        buttonEl.textContent = 'Start Your Journey';
+      }
+
+      typeOnboardingMessage(message);
     }
 
-    function openChantingOverlay() {
-      const overlay = document.getElementById('chantingOverlay');
-      overlay.style.display = 'flex';
+    function typeOnboardingMessage(message, index = 0) {
+      const messageEl = document.getElementById('onboardingMessage');
+      if (index < message.length) {
+        messageEl.textContent += message[index];
+        setTimeout(() => typeOnboardingMessage(message, index + 1), 30);
+      }
     }
 
-    function closeChantingOverlay() {
-      const overlay = document.getElementById('chantingOverlay');
-      overlay.style.display = 'none';
-    }
+    function nextOnboardingStep() {
+      const inputEl = document.getElementById('onboardingInput');
 
-    function goBack() {
-      const chatContainer = document.getElementById('chatContainer');
-      const logo = document.querySelector('.logo');
-      const welcomeMessage = document.querySelector('.welcome-message');
-      const activitySection = document.querySelector('.activity-section');
-      const infoSection = document.querySelector('.info-section');
-      const topics = document.getElementById('topics');
-      const chatHeaderText = document.getElementById('chatHeaderText');
-      const notificationIcon = document.querySelector('.notification-icon');
-      const historyIcon = document.querySelector('.history-icon');
+      if (currentStep < onboardingSteps.length - 1) {
+        if (currentStep === 0) userData.name = inputEl.value;
+        if (currentStep === 1) userData.email = inputEl.value;
+        if (currentStep === 2) userData.password = inputEl.value;
 
-      chatContainer.classList.remove('fullscreen');
-      logo.style.display = 'block';
-      welcomeMessage.style.display = 'block';
-      activitySection.style.display = 'block';
-      infoSection.style.display = 'block';
-      topics.style.display = 'flex';
-      document.querySelector('.navigation').style.display = 'flex';
-      chatHeaderText.text = 'Hare Krishna Nilesh';
-      notificationIcon.style.display = 'flex';
-      historyIcon.style.display = 'none';
-    }
+        inputEl.value = '';
+      }
 
-    function enterFullscreenMode() {
-      const chatContainer = document.getElementById('chatContainer');
-      chatContainer.classList.add('fullscreen');
-      updateNavigationVisibility();
-    }
+      currentStep++;
 
-    function toggleNotifications() {
-      const panel = document.getElementById('notificationPanel');
-      panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
-    }
-
-    function toggleHistory() {
-      const panel = document.getElementById('historyPanel');
-      panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
+      if (currentStep < onboardingSteps.length) {
+        showOnboardingStep();
+      } else {
+        // Here you would typically send the userData to your server
+        console.log("User data:", userData);
+        alert("Sign up complete! Welcome to Sakha.");
+        window.location.href = 'https://sakha-chat.vercel.app/'; //eload the page to return to the initial state
+      }
     }
 
     typeWriter();
     createParticles();
-
-    document.getElementById('userInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
-
-    
-
-    window.addEventListener('scroll', () => {
-      const particles = document.querySelectorAll('.particle');
-      const scrollPosition = window.pageYOffset;
-      particles.forEach((particle, index) => {
-        const speed = 0.5 + (index / particles.length) * 0.5;
-        particle.style.transform = `translateY(${scrollPosition * speed}px)`;
-      });
-    });
-
-    const originalHeight = window.innerHeight;
-
-    function updateNavigationVisibility() {
-      const navigation = document.querySelector('.navigation');
-      const chatContainer = document.getElementById('chatContainer');
-      if (chatContainer.classList.contains('fullscreen')) {
-        navigation.style.display = 'flex';
-      }
-    }
-
-    function scrollChatToBottom() {
-      const chatMessages = document.getElementById('chatMessages');
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    const originalSendMessage = sendMessage;
-    sendMessage = function() {
-      originalSendMessage();
-      scrollChatToBottom();
-    };
-
-    function addToHistory(title, content) {
-      const historyPanel = document.getElementById('historyPanel');
-      const historyItem = document.createElement('div');
-      historyItem.className = 'history-item';
-      historyItem.innerHTML = `
-    <div class="history-item-title">${title}</div>
-    <div class="history-item-content">${content}</div>
-  `; 
-      historyPanel.appendChild(historyItem);
-    }
-
   </script>
 </body>
+
 </html>
-
-
-
-
-          
