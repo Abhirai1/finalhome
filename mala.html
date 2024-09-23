@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 
 <head>
@@ -324,6 +324,11 @@
     <h3 id="heading">जय श्रीकृष्णचैतन्य प्रभु नित्यानंद । <br>श्री अद्वैत गदाधर श्रीवासादि गौर भक्तवृंद ॥</h3>
     <button id="startButton">Start</button>
 
+    
+    <div class="celebrate-message" id="celebrate-message"></div>
+
+
+
     <h2 id="counter">0</h2>
     <div role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="--value: 99; display: flex; align-items: center; justify-content: center;">
       <span style="font-size: 30px;" id="rounds">0</span>
@@ -343,9 +348,10 @@
       <i id="darkModeIcon" class="fas fa-sun"></i>
     </button>
   </div>
+  
   <nav class="navigation"><a href="https://home.sakha.chat" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a><a href="https://vedic.sakha.chat" class="nav-item"><i class="fas fa-book"></i><span>Books</span></a><a href="https://home.sakha.chat/mala" class="nav-active nav-item"><i class="fas fa-om"></i><span>Chanting</span></a><a href="https://gita.sakha.chat" class="nav-item"><i class="fas fa-leaf"></i><span>Remedies</span></a>
     <a href="https://rzp.io/l/sakha" class="nav-item"><i class="fas fa-hand-holding-heart"></i><span>contribute</span></a></nav>
-  
+      <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script>
@@ -460,7 +466,7 @@
           counter = 0;
           updateProgressBar(rounds / 16 * 100);
           document.getElementById('rounds').innerText = rounds;
-
+celebrate();
           // Start 360-degree rotation
           is360Rotating = true;
           isSpinning = false;
@@ -538,6 +544,7 @@
     function stopSpinning() {
       isSpinning = false;
       clearTimeout(spinTimeout);
+      
     }
 
     document.getElementById('startButton').addEventListener('click', toggleSpinning);
@@ -587,7 +594,38 @@ darkModeToggle.addEventListener('click', () => {
 });
     animate();
     
+            
     
+            // Celebration function triggered on button click
+            function celebrate() {
+              // Play celebration sound
+              
+    
+              // Show the celebration message with fade-in animation
+              const message = document.getElementById('celebrate-message');
+              message.style.opacity = '1';
+    
+              // Start confetti animation
+              confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+              });
+    
+              confetti({
+                particleCount: 100,
+                spread: 120,
+                origin: { x: 0.8, y: 0.6 },
+                colors: ['#FFC107', '#FF5722', '#4CAF50', '#2196F3']
+              });
+    
+              confetti({
+                particleCount: 100,
+                spread: 120,
+                origin: { x: 0.2, y: 0.6 },
+                colors: ['#FFC107', '#FF5722', '#4CAF50', '#2196F3']
+              });
+            }
     
     
   </script>
